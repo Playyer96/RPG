@@ -53,7 +53,7 @@ app.use(function(err, req, res, next) {
 
 app.listen(port, function()
 {
-  console.log('App strat listen!');
+  console.log('App start listen!');
 })
 
 module.exports = app;
