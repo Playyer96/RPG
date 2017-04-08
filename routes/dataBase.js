@@ -21,4 +21,4 @@ function execute (sqlStatement, onCompleted) {
 }
 
 //Exporting module
-module.exports.execute = query;
+module.exports.execute = execute;
