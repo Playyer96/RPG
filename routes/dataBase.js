@@ -1,16 +1,29 @@
 var pg = require('pg');
 
-function execute (sqlStatement, onCompleted) {
+//Properties
+
+var pool = new pg.Pool();
+
+//Execute function
+function execute (query, onCompleted) {
   pool.connect (function (error, client) {
     if (error) return console.error('Error fetching client from pool', error);
+  var client = new pg.Client(config);
+  client.connect(function (err) {
+    if (err) throw err;
 
-    client.execute (sqlStatement, function (error, result) {
+    client.query (query, function (error, result) {
       if (error) return console.error('Error running query', error);
+    client.query(query, function (err, result) {
+      if (err) throw err;
 
       onCompleted (result.rows);
+      onCompleted (result);
 
       client.end (function (error) {
         if (error) return console.error('Error ending the client', error);
+      client.end(function (err) {
+        if (err) throw err;
       });
     });
   });
@@ -21,4 +34,4 @@ function execute (sqlStatement, onCompleted) {
 }
 
 //Exporting module
-module.exports.execute = execute;
+module.exports.execute = execute; 
