@@ -8,7 +8,7 @@ var pool = new pg.Pool();
 function execute (query, onCompleted) {
   pool.connect (function (error, client) {
     if (error) return console.error('Error fetching client from pool', error);
-  var client = new pg.Client(config);
+  var client = new pg.Client();
   client.connect(function (err) {
     if (err) throw err;
 
@@ -34,4 +34,4 @@ function execute (query, onCompleted) {
 }
 
 //Exporting module
-module.exports.execute = execute; 
+module.exports.execute = execute;
